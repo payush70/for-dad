@@ -47,7 +47,6 @@
             transition: all 0.8s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
-        /* Fixed structural container to prevent diagonal ribbons from overflowing */
         .ribbon-wrapper {
             position: absolute;
             top: 0;
@@ -215,7 +214,7 @@
             display: none;
             width: 100%;
             background: #fff;
-            padding: 12px 12px 25px 12px;
+            padding: 12px 12px 20px 12px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
             border-radius: 4px;
             opacity: 0;
@@ -224,6 +223,25 @@
             text-align: center;
         }
         .polaroid-deck.show { display: block; opacity: 1; }
+        
+        .back-btn {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: var(--ribbon-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(230, 92, 108, 0.3);
+            transition: transform 0.2s;
+        }
+        .back-btn:active {
+            transform: scale(0.95);
+        }
+
         .tilt-left { transform: scale(1) rotate(-3deg); }
         .tilt-right { transform: scale(1) rotate(3deg); }
 
@@ -242,10 +260,10 @@
         }
         .polaroid-deck .caption {
             font-family: 'Caveat', serif;
-            font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+            font-size: clamp(1.3rem, 5vw, 1.6rem);
             color: var(--text-main);
             margin-top: 15px;
-            line-height: 1.2;
+            line-height: 1.3;
         }
     </style>
 </head>
@@ -284,16 +302,15 @@
             <div class="img-frame">
                 <img src="papa1.jpeg" alt="Dad Memories 1">
             </div>
-            <div class="caption">Dear Pops, Thank you for everything you do for me You're the coolest person in the world.
-
-always supporting me and having my back I love you more than words can express</div>
+            <div class="caption">Dear Pops, Thank you for everything you do for me ❤️ You're the coolest person in the world, always supporting me and having my back. I love you more than words can express ❤️</div>
         </div>
 
         <div id="polaroid2" class="polaroid-deck">
             <div class="img-frame">
-                <img src="papa2.jpeg" alt="Dad Memories 2">
+                <img src="paa2.jpeg" alt="Dad Memories 2">
             </div>
-            <div class="caption">Thank you for your endless love, care, and support. I'm so lucky to have the coolest dad who stands by me through everything. Love you always 🌟</div>
+            <div class="caption">Thank you for your endless love, care, and support. I'm so lucky to have the coolest dad who stands by me through everything. Love you always ❤️</div>
+            <button class="back-btn" onclick="restartJourney()">Replay ❤️</button>
         </div>
 
     </div>
@@ -330,7 +347,7 @@ always supporting me and having my back I love you more than words can express</
                 setTimeout(() => {
                     document.getElementById('balloon3').style.display = 'block';
                 }, 500);
-            }, 3000);
+            }, 5500); // Increased display time slightly so he has plenty of time to comfortably read message 1
         }
 
         function clickBalloon3() {
@@ -338,6 +355,16 @@ always supporting me and having my back I love you more than words can express</
             const polaroid = document.getElementById('polaroid2');
             polaroid.classList.add('show');
             polaroid.classList.add('tilt-right');
+        }
+
+        function restartJourney() {
+            const finalPolaroid = document.getElementById('polaroid2');
+            finalPolaroid.classList.remove('show');
+            finalPolaroid.classList.remove('tilt-right');
+            
+            setTimeout(() => {
+                document.getElementById('balloon1').style.display = 'block';
+            }, 400);
         }
     </script>
 </body>
